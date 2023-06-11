@@ -12,6 +12,7 @@ import { QuestionCardComponent } from './question-card/question-card.component';
 import { AnswersCardComponent } from './answers-card/answers-card.component';
 import { CommentCardComponent } from './comment-card/comment-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HeroComponent } from './hero/hero.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AnswersCardComponent,
     CommentCardComponent,
     NavbarComponent,
+    HeroComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
