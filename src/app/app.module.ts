@@ -13,6 +13,9 @@ import { AnswersCardComponent } from './answers-card/answers-card.component';
 import { CommentCardComponent } from './comment-card/comment-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HeroComponent } from './hero/hero.component';
+import { TagsComponent } from './tags/tags.component';
+import { UsersComponent } from './users/users.component';
+import { UserDasboardComponent } from './user-dasboard/user-dasboard.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,8 +30,11 @@ import { HeroComponent } from './hero/hero.component';
     QuestionCardComponent,
     AnswersCardComponent,
     CommentCardComponent,
-    NavbarComponent,
     HeroComponent,
+    HeroComponent,
+    TagsComponent,
+    UserDasboardComponent,
+    UsersComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -49,40 +49,121 @@
         </h2>
       </div>
       <div class="mt-[40px] sm:ml-0 ml-[5.5rem]">
-        <form class="flex flex-col">
+        <form class="flex flex-col" (ngSubmit)="signUp()" [formGroup]="myForm">
           <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
             >USER-NAME</label
           >
           <input
             class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
             type="text"
+            formControlName="name"
+            required
             placeholder="Enter your user-name"
           />
+          <div
+            *ngIf="
+              myForm.get('name')?.invalid &&
+              (myForm.get('name')?.dirty || myForm.get('name')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('name')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              User-ame is required.
+            </div>
+          </div>
+
           <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
             >E-MAIL</label
           >
           <input
             class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
             type="email"
+            formControlName="email"
+            required
             placeholder="Enter your email"
           />
+          <div
+            *ngIf="
+              myForm.get('email')?.invalid &&
+              (myForm.get('email')?.dirty || myForm.get('email')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('email')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Email is required.
+            </div>
+            <div
+              *ngIf="myForm.get('email')?.errors?.['email']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Invalid email format.
+            </div>
+          </div>
+
           <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
             >PASSWORD</label
           >
           <input
             class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] font-[400] outline-none mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
             type="password"
+            formControlName="password"
+            required
             placeholder="Enter your password"
           />
+          <div
+            *ngIf="
+              myForm.get('password')?.invalid &&
+              (myForm.get('password')?.dirty || myForm.get('password')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('password')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Password is required.
+            </div>
+          </div>
+
           <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
             >CONFIRM PASSWORD</label
           >
           <input
             class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] mb-[25px] outline-none bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
             type="password"
+            name="confirmPassword"
+            formControlName="confirmPassword"
             placeholder="Confirm your password"
           />
+          <div
+            *ngIf="
+              myForm.get('confirmPassword')?.invalid &&
+              (myForm.get('confirmPassword')?.dirty ||
+                myForm.get('confirmPassword')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('confirmPassword')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Confirm password is required.
+            </div>
+            <div
+              *ngIf="
+                myForm.get('confirmPassword')?.value !==
+                myForm.get('password')?.value
+              "
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Passwords do not match.
+            </div>
+          </div>
+
           <button
+            type="submit"
             class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-white text-[18px] font-[600] sm:mt-[25px] mt-[30px] bg-[#002d8b] border border-rgba(0, 0, 0, 0.1) rounded-[10px]"
           >
             Sign Up

@@ -6,8 +6,16 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './question-card.component.html',
-  styleUrls: ['./question-card.component.css']
+  styleUrls: ['./question-card.component.css'],
 })
 export class QuestionCardComponent {
+  isModalOpen = false;
 
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
 }

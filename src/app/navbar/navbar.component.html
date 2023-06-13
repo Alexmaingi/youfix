@@ -19,19 +19,35 @@
         alt=""
       />
     </div>
-    <div class="md:w-[63px] md:h-[63px] w-[40px] h-[40px] rounded-full border">
+    <div
+      routerLink="/dashboard"
+      class="md:w-[63px] md:h-[63px] w-[40px] h-[40px] rounded-full border"
+    >
       <img
         class="object-cover"
         src="https://robohash.org/alfgrgi?set=set3"
         alt=""
       />
     </div>
-    <div class="px-2">
+    <div (click)="showDropdown = !showDropdown" class="px-2">
       <img
         class="cursor-pointer md:max-h-9 max-h-3"
         src="../../assets/icons/dropdown.svg"
         alt=""
       />
     </div>
+  </div>
+</div>
+<div
+  [hidden]="!showDropdown"
+  class="md:w-[145px] w-[90px] md:ml-[137rem] ml-[20rem] md:h-[95px] h-[50px] border bg-[#E6E6F1] flex flex-col justify-center items-center rounded-md"
+>
+  <div>
+    <h2 class="font-[600] md:text-[16px] text-[10px] text-[#002D8B]">
+      Edit Profile
+    </h2>
+    <h2 class="font-[600] md:text-[16px] text-[10px] text-[#002D8B]">
+      Log out
+    </h2>
   </div>
 </div>

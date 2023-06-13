@@ -1,28 +1,137 @@
-<div
-  class="w-[270px] h-[858px] bg-[#E6E6F1] rounded-[15px] items-start justify-start flex flex-col pt-10 pl-14"
->
-  <div class="flex items-center justify-center my-5">
-    <img class="max-h-6" src="../../assets/icons/home-icon.svg" alt="" />
-    <h2 class="text-[20px] font-[500] text-[#111111] opacity-[0.5] px-6">
-      Home
-    </h2>
+<div *ngIf="!isadminDashboard()">
+  <div
+    *ngIf="!isDashboard()"
+    class="md:w-[270px] w-[50px] md:h-[858px] h-[685px] bg-[#E6E6F1] rounded-[15px] md:items-start items-center justify-start flex flex-col md:pt-10 pt-3 md:pl-14"
+  >
+    <div
+      *ngIf="isadminDashboard()"
+      class="flex items-center justify-center md:ml-10 md:mt-6 mt-3"
+    >
+      <div
+        class="md:w-[50px] w-[30px] md:h-[50px] h-[30px] rounded-full border-2 border-[#fff]"
+      >
+        <img
+          class="object-cover"
+          src="https://robohash.org/algi?set=set3"
+          alt=""
+        />
+      </div>
+      <div class="px-3 hidden md:block">
+        <h2 class="font-[600] md:text-[12px] text-[8px] text-[#191919]">
+          Peter Gregory
+        </h2>
+        <p class="md:text-[8px] text-[6px] font-[500] text-[#3F3F3F]">
+          Software Developer
+        </p>
+      </div>
+    </div>
+    <div
+      *ngIf="!isadminDashboard()"
+      class="flex items-center justify-center w-full my-5 md:pr-14"
+      routerLink="/home"
+      routerLinkActive="bg-[#D9D9D9] py-3 rounded-md md:border-r-8 border-r-4 border-[#002D8B]"
+    >
+      <img class="max-h-6" src="../../assets/icons/home-icon.svg" alt="" />
+      <h2
+        class="text-[20px] font-[500] text-[#111111] opacity-[0.5] hidden md:block px-6 cursor-pointer"
+      >
+        <a>Home</a>
+      </h2>
+    </div>
+    <div
+      routerLink="/questions"
+      routerLinkActive="bg-[#D9D9D9] py-3 rounded-md md:border-r-8 border-r-4 border-[#002D8B]"
+      class="flex items-center justify-center w-full my-5 md:pr-3"
+    >
+      <img class="max-h-5" src="../../assets/icons/questions-icon.svg" alt="" />
+      <h2
+        class="text-[20px] font-[500] text-[#111111] opacity-[0.5] hidden md:block md:px-6 cursor-pointer"
+      >
+        Questions
+      </h2>
+    </div>
+    <div
+      *ngIf="!isadminDashboard()"
+      class="flex items-center justify-center w-full my-5 md:pr-[5rem]"
+      routerLink="tags"
+      routerLinkActive="bg-[#D9D9D9] py-3 rounded-md md:border-r-8 border-r-4 border-[#002D8B]"
+    >
+      <img class="max-h-6" src="../../assets/icons/tags-icon.svg" alt="" />
+      <h2
+        class="text-[20px] font-[500] text-[#111111] opacity-[0.5] hidden md:block px-6 cursor-pointer"
+      >
+        <a>Tags</a>
+      </h2>
+    </div>
+    <div
+      class="flex items-center justify-center w-full my-5 md:pr-16"
+      routerLink="users"
+      routerLinkActive="bg-[#D9D9D9] py-3 rounded-md md:border-r-8 border-r-4 border-[#002D8B]"
+    >
+      <img class="max-h-6" src="../../assets/icons/users-icon.svg" alt="" />
+      <h2
+        class="text-[20px] font-[500] text-[#111111] opacity-[0.5] hidden md:block px-6 cursor-pointer"
+      >
+        <a>Users</a>
+      </h2>
+    </div>
   </div>
-  <div class="flex items-center justify-center my-5">
-    <img class="max-h-5" src="../../assets/icons/questions-icon.svg" alt="" />
-    <h2 class="text-[20px] font-[500] text-[#111111] opacity-[0.5] px-6">
-      Questions
-    </h2>
-  </div>
-  <div class="flex items-center justify-center my-5">
-    <img class="max-h-6" src="../../assets/icons/tags-icon.svg" alt="" />
-    <h2 class="text-[20px] font-[500] text-[#111111] opacity-[0.5] px-6">
-      Tags
-    </h2>
-  </div>
-  <div class="flex items-center justify-center my-5">
-    <img class="max-h-6" src="../../assets/icons/users-icon.svg" alt="" />
-    <h2 class="text-[20px] font-[500] text-[#111111] opacity-[0.5] px-6">
-      Users
-    </h2>
+  <div
+    *ngIf="isDashboard()"
+    class="md:w-[270px] w-[50px] md:h-[858px] h-[685px] bg-[#E6E6F1] rounded-[15px] md:items-start items-center justify-start flex flex-col md:pt-10 pt-3 md:pl-14"
+  >
+    <div class="flex items-center justify-center md:mt-6 mt-3">
+      <div
+        class="md:w-[50px] w-[30px] md:h-[50px] h-[30px] rounded-full border-2 border-[#fff]"
+      >
+        <img
+          class="object-cover"
+          src="https://robohash.org/algi?set=set3"
+          alt=""
+        />
+      </div>
+      <div class="px-3 hidden md:block">
+        <h2 class="font-[600] md:text-[12px] text-[8px] text-[#191919]">
+          Peter Gregory
+        </h2>
+        <p class="md:text-[8px] text-[6px] font-[500] text-[#3F3F3F]">
+          Software Developer
+        </p>
+      </div>
+    </div>
+    <div>
+      <div
+        class="flex items-center justify-center w-full my-5 md:pr-[6.5rem]"
+        routerLink="/home"
+      >
+        <img class="max-h-6" src="../../assets/icons/home-icon.svg" alt="" />
+        <h2
+          class="text-[20px] font-[500] text-[#111111] opacity-[0.5] hidden md:block px-6 cursor-pointer"
+        >
+          <a>Home</a>
+        </h2>
+      </div>
+      <div class="flex items-center justify-center w-full my-5 md:pr-11">
+        <img
+          class="max-h-5"
+          src="../../assets/icons/questions-icon.svg"
+          alt=""
+        />
+        <h2
+          class="text-[13px] font-[500] text-[#111111] opacity-[0.5] hidden md:block md:px-6"
+        >
+          peter@gmail.com
+        </h2>
+      </div>
+      <div class="flex items-center justify-center w-full my-5 md:pl-7">
+        <img class="max-h-6" src="../../assets/icons/tags-icon.svg" alt="" />
+        <h2
+          class="text-[10px] font-[500] text-[#111111] opacity-[0.5] hidden md:block md:px-6"
+        >
+          Here is some brief description about this Project. To view the project
+          br
+        </h2>
+      </div>
+    </div>
   </div>
 </div>

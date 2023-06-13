@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-tags',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  templateUrl: './tags.component.html',
+  styleUrls: ['./tags.component.css'],
 })
-export class NavbarComponent {
-  showDropdown = false;
-}
+export class TagsComponent {}

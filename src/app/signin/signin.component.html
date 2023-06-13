@@ -49,28 +49,65 @@
         </h2>
       </div>
       <div class="mt-[40px] sm:ml-0 ml-[5.5rem]">
-        <form class="flex flex-col">
+        <form class="flex flex-col" [formGroup]="form" (ngSubmit)="logIn()">
           <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
             >E-MAIL</label
           >
           <input
             class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
             type="email"
+            formControlName="email"
             placeholder="Enter your email"
           />
+          <div
+            *ngIf="
+              form.get('email')?.invalid &&
+              (form.get('email')?.dirty || form.get('email')?.touched)
+            "
+          >
+            <div
+              *ngIf="form.get('email')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Email is required.
+            </div>
+            <div
+              *ngIf="form.get('email')?.errors?.['email']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Invalid email format.
+            </div>
+          </div>
+
           <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
             >PASSWORD</label
           >
           <input
             class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] font-[400] outline-none mb-[5px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
             type="password"
+            formControlName="password"
             placeholder="Enter your password"
           />
+          <div
+            *ngIf="
+              form.get('password')?.invalid &&
+              (form.get('password')?.dirty || form.get('password')?.touched)
+            "
+          >
+            <div
+              *ngIf="form.get('password')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Password is required.
+            </div>
+          </div>
+
           <p class="text-[#828282] text-[12px] font-[600] mb-[20px]">
             Forgot your password?
             <span class="text-[#0394D5]">Click here.</span>
           </p>
           <button
+            type="submit"
             class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-white text-[18px] font-[600] sm:mt-[25px] mt-[30px] bg-[#002d8b] border border-rgba(0, 0, 0, 0.1) rounded-[10px]"
           >
             Sign In
