@@ -1,0 +1,175 @@
+<div class="w-full min-h-screen flex overflow-hidden">
+  <div
+    class="section1 hidden min-h-full w-[30%] sm:flex flex-col justify-center items-center"
+  >
+    <img class="md:max-h-12" src="../../assets/icons/signin.svg" alt="" />
+    <h2 class="text-[45px] md:text-[35px] font-[900] font-Inter text-[#002D8B]">
+      You<span class="text-[#0394D5]">Fix</span>
+    </h2>
+    <p
+      class="text-[16px] md:text-[13px] font-[400] text-center md:w-[200px] w-[350px] h-[102px]"
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quam diam, dui in
+      mattis egestas dictum. Fermentum hendrerit eu aenean est odio massa sed.
+    </p>
+  </div>
+  <div
+    class="flex flex-col max-h-full w-full sm:w-[70%] items-center justify-center"
+  >
+    <div
+      class="sm:w-[60%] md:mx-10 md:w-[90%] md:ml-[15rem] w-full sm:mx-0 h-[98%]"
+    >
+      <div class="flex items-center ml-[50%] sm:ml-[40%]">
+        <p
+          class="sm:text-[18px] md:text-[15px] text-[14px] font-[600] font-Inter"
+        >
+          Have an account?
+        </p>
+        <button
+          class="text-[10px] sm:text-[18px] md:text-[14px] font-Inter text-[#002D8B] font-[700] rounded-[10px] border-2 border-[#002D8B] ml-11 px-10 py-3"
+        >
+          Sign in
+        </button>
+      </div>
+      <h2
+        class="text-[45px] md:hidden block md:text-[35px] ml-[14rem] mt-[50px] font-[900] font-Inter text-[#002D8B]"
+      >
+        You<span class="text-[#0394D5]">Fix</span>
+      </h2>
+      <div class="sm:mt-[130px] md:mt-[120px] sm:ml-0 ml-[5.5rem] mt-[40px]">
+        <h2
+          class="sm:text-[20px] md:text-[18px] text-[16px] font-[600] text-[#828282]"
+        >
+          Home / <span class="text-[#002D8B]">Sign up</span>
+        </h2>
+        <h2
+          class="sm:text-[32px] md:text-[29px] text-[27px] font-[600] mt-[30px]"
+        >
+          Sign up
+        </h2>
+      </div>
+      <div class="mt-[40px] sm:ml-0 ml-[5.5rem]">
+        <form class="flex flex-col" (ngSubmit)="signUp()" [formGroup]="myForm">
+          <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
+            >USER-NAME</label
+          >
+          <input
+            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+            type="text"
+            formControlName="name"
+            required
+            placeholder="Enter your user-name"
+          />
+          <div
+            *ngIf="
+              myForm.get('name')?.invalid &&
+              (myForm.get('name')?.dirty || myForm.get('name')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('name')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              User-ame is required.
+            </div>
+          </div>
+
+          <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
+            >E-MAIL</label
+          >
+          <input
+            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+            type="email"
+            formControlName="email"
+            required
+            placeholder="Enter your email"
+          />
+          <div
+            *ngIf="
+              myForm.get('email')?.invalid &&
+              (myForm.get('email')?.dirty || myForm.get('email')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('email')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Email is required.
+            </div>
+            <div
+              *ngIf="myForm.get('email')?.errors?.['email']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Invalid email format.
+            </div>
+          </div>
+
+          <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
+            >PASSWORD</label
+          >
+          <input
+            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] font-[400] outline-none mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+            type="password"
+            formControlName="password"
+            required
+            placeholder="Enter your password"
+          />
+          <div
+            *ngIf="
+              myForm.get('password')?.invalid &&
+              (myForm.get('password')?.dirty || myForm.get('password')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('password')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Password is required.
+            </div>
+          </div>
+
+          <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
+            >CONFIRM PASSWORD</label
+          >
+          <input
+            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] mb-[25px] outline-none bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+            type="password"
+            name="confirmPassword"
+            formControlName="confirmPassword"
+            placeholder="Confirm your password"
+          />
+          <div
+            *ngIf="
+              myForm.get('confirmPassword')?.invalid &&
+              (myForm.get('confirmPassword')?.dirty ||
+                myForm.get('confirmPassword')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('confirmPassword')?.errors?.['required']"
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Confirm password is required.
+            </div>
+            <div
+              *ngIf="
+                myForm.get('confirmPassword')?.value !==
+                myForm.get('password')?.value
+              "
+              class="text-red-500 py-3 text-sm mb-3"
+            >
+              Passwords do not match.
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-white text-[18px] font-[600] sm:mt-[25px] mt-[30px] bg-[#002d8b] border border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

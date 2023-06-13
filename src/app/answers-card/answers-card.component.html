@@ -1,0 +1,99 @@
+<div class="relative">
+  <div
+    class="md:w-[889px] w-[220px] md:h-[150px] h-[175px] bg-[#F7FAFF] pt-10 rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4"
+  >
+    <div class="flex items-center justify-center md:mt-6 mt-3">
+      <div
+        class="md:w-[40px] w-[25px] md:h-[40px] h-[25px] rounded-full border-2"
+      >
+        <img
+          class="object-cover"
+          src="https://robohash.org/algi?set=set3"
+          alt=""
+        />
+      </div>
+      <div class="px-3">
+        <h2 class="font-[600] md:text-[12px] text-[8px] text-[#191919]">
+          Peter Gregory
+        </h2>
+        <p class="md:text-[8px] text-[6px] font-[500] text-[#3F3F3F]">
+          5/9/2022
+        </p>
+      </div>
+    </div>
+    <div>
+      <p
+        class="md:text-[12px] text-[8px] font-[300] text-[#000000] ml:pl-[4rem] pl-[2.5rem]"
+      >
+        Here is some brief description about this Project. To view the project
+        brief and your interactions click on view. Here is some brief
+        description about this Projec.
+      </p>
+    </div>
+    <div class="flex w-full justify-end items-center my-4">
+      <img
+        class="px-2 md:max-h-9 max-h-4 cursor-pointer"
+        src="../../assets/icons/upvote.svg"
+        alt=""
+      />
+      <img
+        class="px-2 mt-2 md:max-h-9 max-h-4 cursor-pointer"
+        src="../../assets/icons/downvote.svg"
+        alt=""
+      />
+      <img
+        (click)="openModal()"
+        class="px-2 mt-2 md:max-h-9 max-h-4 cursor-pointer"
+        src="../../assets/icons/comment.svg"
+        alt=""
+      />
+    </div>
+  </div>
+  <p
+    (click)="showComments = !showComments"
+    class="md:pl-[67rem] md:text-[12px] text-[8px] pl-[10rem] text-[#0394D5] cursor-pointer"
+  >
+    view comments
+  </p>
+  <div
+    [hidden]="!showComments"
+    class="md:my-10 my-8 border-l-2 md:ml-10 ml-3 md:pl-[7.5rem] pl-5"
+  >
+    <app-comment-card></app-comment-card>
+  </div>
+</div>
+<div
+  *ngIf="isModalOpen"
+  class="w-full h-screen bg-[#00000080] z-10 absolute top-0 right-0 flex items-center justify-center"
+  (click)="closeModal()"
+>
+  <div
+    class="md:w-[710px] w-[360px] md:h-[400px] h-[250px] bg-[#ffffff] rounded-[10px]"
+  >
+    <div
+      class="flex justify-between items-center p-5 border-b md:h-[50px] h-[40px]"
+    >
+      <h2 class="md:text-[25px] text-[15px] font-[600]">Add a comment</h2>
+      <img
+        class="md:max-h-6 max-h-3 cursor-pointer"
+        (click)="closeModal()"
+        src="../../assets/icons/exit.svg"
+        alt=""
+      />
+    </div>
+    <div class="flex items-center justify-center md:mt-14">
+      <form class="flex flex-col">
+        <textarea
+          class="md:w-[575px] w-[300px] md:h-[130px] h-[100px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[5px] mt-5 bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
+          type="text"
+          placeholder="Enter a comment for the question....."
+        ></textarea>
+        <button
+          class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] md:py-5 pl-[10px] text-white md:text-[18px] text-[14px] font-[600] sm:mt-[25px] md:mt-[30px] mt-[20px] bg-[#002d8b] rounded-[10px]"
+        >
+          Share
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

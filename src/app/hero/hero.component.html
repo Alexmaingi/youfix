@@ -1,0 +1,94 @@
+<div class="w-full relative">
+  <div><app-navbar></app-navbar></div>
+  <div class="flex">
+    <div class="md:mt-10 mt-4 md:ml-[8rem] ml-4">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="md:ml-16 ml-8 md:mt-10 mt-4">
+      <div class="flex">
+        <input
+          class="md:w-[644px] w-[190px] md:h-[50px] h-[35px] outline-none mb-12 rounded-[10px] border-[rgba(96, 124, 183, 0.5)] border-2 px-4 md:text-[13px] text-[13px] font-[600] text-[rgba(17, 17, 17, 0.4)]"
+          placeholder="Search..."
+          type="text"
+          [(ngModel)]="inputValue"
+          (input)="checkInput()"
+        />
+        <button
+          (click)="openModal()"
+          class="md:w-[145px] w-[90px] md:h-[45px] h-[35px] md:text-[16px] text-[10px] font-[600] text-[#002D8B] bg-[#E6E6F1] rounded-[20px] md:ml-[18rem] ml-3"
+        >
+          Ask Question
+        </button>
+      </div>
+
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <div
+    *ngIf="isModalOpen"
+    class="w-full h-screen bg-[#00000080] absolute top-0 flex items-center justify-center"
+    (click)="closeModal()"
+  >
+    <div
+      class="md:w-[710px] w-[360px] md:h-[746px] h-[470px] bg-[#ffffff] rounded-[10px]"
+    >
+      <div
+        class="flex justify-between items-center p-5 border-b md:h-[50px] h-[40px]"
+      >
+        <h2 class="md:text-[25px] text-[15px] font-[600]">
+          Create new Question
+        </h2>
+        <img
+          class="md:max-h-6 max-h-3 cursor-pointer"
+          (click)="closeModal()"
+          src="../../assets/icons/exit.svg"
+          alt=""
+        />
+      </div>
+      <div class="flex items-center justify-center md:mt-14">
+        <form class="flex flex-col">
+          <label
+            class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
+            >Title</label
+          >
+          <input
+            [(ngModel)]="inputValue"
+            (input)="checkInput()"
+            class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
+            type="text"
+            placeholder="Enter your question title...."
+          />
+          <label
+            class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
+            >Brief description</label
+          >
+          <textarea
+            [(ngModel)]="inputValue"
+            (input)="checkInput()"
+            class="md:w-[575px] w-[300px] md:h-[130px] h-[100px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
+            type="text"
+            placeholder="Enter a brief description of the question....."
+          ></textarea>
+          <label
+            class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
+            >Tag</label
+          >
+          <input
+            [(ngModel)]="inputValue"
+            (input)="checkInput()"
+            class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
+            type="text"
+            placeholder="Enter a tag....."
+          />
+
+          <button
+            [disabled]="isDisabled"
+            class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] md:py-5 pl-[10px] text-white md:text-[18px] text-[14px] font-[600] sm:mt-[25px] md:mt-[30px] mt-[20px] bg-[#002d8b] rounded-[10px]"
+          >
+            Share
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
