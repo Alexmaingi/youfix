@@ -35,6 +35,7 @@ import { UserDasboardComponent } from './user-dasboard/user-dasboard.component';
     TagsComponent,
     UserDasboardComponent,
     UsersComponent,
+    NavbarComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

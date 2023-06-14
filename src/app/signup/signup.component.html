@@ -19,42 +19,40 @@
     <div
       class="sm:w-[60%] md:mx-10 md:w-[90%] md:ml-[15rem] w-full sm:mx-0 h-[98%]"
     >
-      <div class="flex items-center ml-[50%] sm:ml-[40%]">
-        <p
-          class="sm:text-[18px] md:text-[15px] text-[14px] font-[600] font-Inter"
-        >
+      <div class="flex items-center ml-[34%]">
+        <p class="md:text-[15px] text-[10px] font-[600] font-Inter">
           Have an account?
         </p>
         <button
-          class="text-[10px] sm:text-[18px] md:text-[14px] font-Inter text-[#002D8B] font-[700] rounded-[10px] border-2 border-[#002D8B] ml-11 px-10 py-3"
+          class="text-[10px] md:text-[14px] font-Inter text-[#002D8B] font-[700] rounded-[10px] border-2 border-[#002D8B] ml-11 px-10 py-3"
         >
           Sign in
         </button>
       </div>
       <h2
-        class="text-[45px] md:hidden block md:text-[35px] ml-[14rem] mt-[50px] font-[900] font-Inter text-[#002D8B]"
+        class="text-[45px] md:hidden block md:text-[35px] ml-[8rem] md:mt-[50px] mt-[30px] font-[900] font-Inter text-[#002D8B]"
       >
         You<span class="text-[#0394D5]">Fix</span>
       </h2>
-      <div class="sm:mt-[130px] md:mt-[120px] sm:ml-0 ml-[5.5rem] mt-[40px]">
+      <div class="sm:mt-[130px] md:mt-[230px] md:ml-0 ml-[30px] mt-[18px]">
         <h2
           class="sm:text-[20px] md:text-[18px] text-[16px] font-[600] text-[#828282]"
         >
           Home / <span class="text-[#002D8B]">Sign up</span>
         </h2>
         <h2
-          class="sm:text-[32px] md:text-[29px] text-[27px] font-[600] mt-[30px]"
+          class="sm:text-[32px] md:text-[29px] text-[27px] font-[600] md:mt-[30px] mt-[15px]"
         >
           Sign up
         </h2>
       </div>
-      <div class="mt-[40px] sm:ml-0 ml-[5.5rem]">
+      <div class="md:mt-[40px] mt-[20px] md:ml-0 ml-[30px]">
         <form class="flex flex-col" (ngSubmit)="signUp()" [formGroup]="myForm">
           <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
             >USER-NAME</label
           >
           <input
-            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+            class="md:w-[60%] w-[22rem] py-5 pl-[10px] md:text-[13px] text-[10px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[8px]"
             type="text"
             formControlName="name"
             required
@@ -78,7 +76,7 @@
             >E-MAIL</label
           >
           <input
-            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+            class="md:w-[60%] w-[22rem] py-5 pl-[10px] md:text-[13px] text-[10px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[8px]"
             type="email"
             formControlName="email"
             required
@@ -108,7 +106,7 @@
             >PASSWORD</label
           >
           <input
-            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] font-[400] outline-none mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+            class="md:w-[60%] w-[22rem] py-5 pl-[10px] md:text-[13px] text-[10px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[8px]"
             type="password"
             formControlName="password"
             required
@@ -132,7 +130,7 @@
             >CONFIRM PASSWORD</label
           >
           <input
-            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-[13px] mb-[25px] outline-none bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+            class="md:w-[60%] w-[22rem] py-5 pl-[10px] md:text-[13px] text-[10px] outline-none font-[500] md:mb-[25px] md-[15px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[8px]"
             type="password"
             name="confirmPassword"
             formControlName="confirmPassword"
@@ -164,7 +162,7 @@
 
           <button
             type="submit"
-            class="sm:w-[60%] w-[80%] py-5 pl-[10px] text-white text-[18px] font-[600] sm:mt-[25px] mt-[30px] bg-[#002d8b] border border-rgba(0, 0, 0, 0.1) rounded-[10px]"
+            class="md:w-[60%] w-[22rem] md:text-[13px] py-5 pl-[10px] text-white text-[15px] font-[600] sm:mt-[25px] mt-[30px] bg-[#002d8b] border border-rgba(0, 0, 0, 0.1) rounded-[10px]"
           >
             Sign Up
           </button>

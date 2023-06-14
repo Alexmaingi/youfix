@@ -32,6 +32,7 @@ const routes: Routes = [
     path: 'admin',
     component: AdminDashboardComponent,
     children: [
+      { path: '', redirectTo: 'adminquestions', pathMatch: 'full' },
       { path: 'adminquestions', component: QuestionCardComponent },
       { path: 'adminusers', component: UsersComponent },
     ],
