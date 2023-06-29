@@ -1,5 +1,6 @@
 <div class="relative">
   <div
+    *ngFor="let answer of answers$ | async"
     class="md:w-[889px] w-[220px] md:h-[150px] h-[175px] bg-[#F7FAFF] pt-10 rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4"
   >
     <div class="flex items-center justify-center md:mt-6 mt-3">
@@ -8,7 +9,7 @@
       >
         <img
           class="object-cover"
-          src="https://robohash.org/algi?set=set3"
+          src="https://robohash.org/fghjk?set=set3"
           alt=""
         />
       </div>
@@ -25,9 +26,7 @@
       <p
         class="md:text-[12px] text-[8px] font-[300] text-[#000000] ml:pl-[4rem] pl-[2.5rem]"
       >
-        Here is some brief description about this Project. To view the project
-        brief and your interactions click on view. Here is some brief
-        description about this Projec.
+        {{ answer.body }}
       </p>
     </div>
     <div class="flex w-full justify-end items-center my-4">
@@ -64,7 +63,7 @@
 </div>
 <div
   *ngIf="isModalOpen"
-  class="w-full h-screen bg-[#00000080] z-10 absolute top-0 right-0 flex items-center justify-center"
+  class="w-full h-screen bg-[#00000080] absolute top-0 z-10 right-0 flex items-center justify-center"
   (click)="closeModal()"
 >
   <div
@@ -97,3 +96,4 @@
     </div>
   </div>
 </div>
+<!-- <h1>Hello world</h1>-->

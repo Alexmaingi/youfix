@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
 })
 // export class CaroselComponent {}
 export class CaroselComponent implements OnInit {
-  slider: any;
-  defaultTransform: any;
+  slider!: string | any;
+  defaultTransform!: number;
   goNext() {
     this.defaultTransform = this.defaultTransform - 398;
     if (Math.abs(this.defaultTransform) >= this.slider.scrollWidth / 1.7)

@@ -19,7 +19,7 @@ export class NavbarComponent {
     return this.router.url === '/dashboard';
   }
 
-  inputValue: any;
+  inputValue!: string;
   isDisabled: boolean = true;
 
   checkInput() {
@@ -34,4 +34,6 @@ export class NavbarComponent {
   closeModal() {
     this.isModalOpen = false;
   }
+
+  username = localStorage.getItem('payload');
 }

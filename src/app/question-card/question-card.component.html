@@ -1,5 +1,9 @@
-<div class="md:h-[775px] h-[600px] overflow-y-scroll overscroll-contain">
+<div
+  class="md:h-[775px] h-[600px] overflow-y-scroll overscroll-contain"
+  *ngIf="questions$ | async as questions"
+>
   <div
+    *ngFor="let q of questions$ | async"
     class="md:w-[996px] w-[280px] my-10 md:h-[297px] h-[240px] bg-[#F7FAFF] rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4 relative"
   >
     <div class="flex items-center justify-center">
@@ -8,45 +12,42 @@
       >
         <img
           class="object-cover"
-          src="https://robohash.org/aingi?set=set3"
+          src="https://robohash.org/{{ q.username }}?set=set3"
           alt=""
         />
       </div>
       <div class="px-3">
         <h2 class="font-[400] md:text-[13px] text-[10px] text-[#191919]">
-          Mary Kimani
+          {{ q.username }}
         </h2>
         <p class="md:text-[12px] text-[9px] font-[500] text-[#3F3F3F]">
-          6h ago
+          {{ q.date | date : "dd-MM-YYY" }}
         </p>
       </div>
     </div>
-    <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center" (click)="oneAnswer(q.id)">
       <h2
         class="md:text-[22px] text-[12px] font-[600] text-[#111111] md:pr-4 pr-2 py-5 cursor-pointer hover:text-[#0394D5]"
       >
-        What is the use of forEach in javascript?
+        {{ q.title }}
       </h2>
       <div
         class="md:w-[100px] w-[60px] md:h-[25px] h-[18px] bg-[#7FD7FE] rounded-[15px] flex justify-center items-center"
       >
         <p class="md:text-[12px] text-[7px] font-[400] text-[#000000]">
-          JavaScript
+          {{ q.tag_names }}
         </p>
       </div>
     </div>
     <div>
       <p class="md:text-[14px] text-[6px] font-[300] text-[#000000]">
-        Here is some brief description about this Project. To view the project
-        brief and your interactions click on view. Here is some brief
-        description about this Project. To view the project brief and your
-        interactions click on view. Here is some brief description about this
-        Project. To view the project brief and ...
+        {{ q.body }}
       </p>
     </div>
     <div
       (click)="openModal()"
-      class="md:w-[171px] w-[120px] md:h-[45px] h-[35px] bg-[#F7FAFF] rounded-[4px] border border-[#808080] flex justify-center items-center mt-7"
+      class="md:w-[171px] w-[120px] md:h-[45px] h-[35px] bg-[#F7FAFF] rounded-[4px] border border-[#808080] flex justify-center items-center mt-7 cursor-pointer"
+      *ngIf="!isAdmin()"
     >
       <img
         class="md:max-h-6 max-h-4"
@@ -57,248 +58,17 @@
         Add response
       </h2>
     </div>
-  </div>
-  <div
-    class="md:w-[996px] w-[280px] my-10 md:h-[297px] h-[240px] bg-[#F7FAFF] rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4 relative"
-  >
-    <div class="flex items-center justify-center">
-      <div
-        class="md:w-[55px] w-[35px] md:h-[55px] h-[35px] rounded-full border-2"
-      >
-        <img
-          class="object-cover"
-          src="https://robohash.org/airi?set=set3"
-          alt=""
-        />
-      </div>
-      <div class="px-3">
-        <h2 class="font-[400] md:text-[13px] text-[10px] text-[#191919]">
-          Mary Kimani
-        </h2>
-        <p class="md:text-[12px] text-[9px] font-[500] text-[#3F3F3F]">
-          6h ago
-        </p>
-      </div>
-    </div>
-    <div class="flex justify-center items-center">
-      <h2
-        class="md:text-[22px] text-[12px] font-[600] text-[#111111] md:pr-4 pr-2 py-5 cursor-pointer hover:text-[#0394D5]"
-      >
-        What is the use of forEach in javascript?
-      </h2>
-      <div
-        class="md:w-[100px] w-[60px] md:h-[25px] h-[18px] bg-[#7FD7FE] rounded-[15px] flex justify-center items-center"
-      >
-        <p class="md:text-[12px] text-[7px] font-[400] text-[#000000]">
-          JavaScript
-        </p>
-      </div>
-    </div>
-    <div>
-      <p class="md:text-[14px] text-[6px] font-[300] text-[#000000]">
-        Here is some brief description about this Project. To view the project
-        brief and your interactions click on view. Here is some brief
-        description about this Project. To view the project brief and your
-        interactions click on view. Here is some brief description about this
-        Project. To view the project brief and ...
-      </p>
-    </div>
-    <div
-      (click)="openModal()"
-      class="md:w-[171px] w-[120px] md:h-[45px] h-[35px] bg-[#F7FAFF] rounded-[4px] border border-[#808080] flex justify-center items-center mt-7"
-    >
-      <img
-        class="md:max-h-6 max-h-4"
-        src="../../assets/icons/add-response.svg"
-        alt=""
-      />
-      <h2 class="md:text-[13px] text-[10px] font-[600] text-[#808080] px-2">
-        Add response
-      </h2>
-    </div>
-  </div>
-  <div
-    class="md:w-[996px] w-[280px] my-10 md:h-[297px] h-[240px] bg-[#F7FAFF] rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4 relative"
-  >
-    <div class="flex items-center justify-center">
-      <div
-        class="md:w-[55px] w-[35px] md:h-[55px] h-[35px] rounded-full border-2"
-      >
-        <img
-          class="object-cover"
-          src="https://robohash.org/dengi?set=set3"
-          alt=""
-        />
-      </div>
-      <div class="px-3">
-        <h2 class="font-[400] md:text-[13px] text-[10px] text-[#191919]">
-          Mary Kimani
-        </h2>
-        <p class="md:text-[12px] text-[9px] font-[500] text-[#3F3F3F]">
-          6h ago
-        </p>
-      </div>
-    </div>
-    <div class="flex justify-center items-center">
-      <h2
-        class="md:text-[22px] text-[12px] font-[600] text-[#111111] md:pr-4 pr-2 py-5 cursor-pointer hover:text-[#0394D5]"
-      >
-        What is the use of forEach in javascript?
-      </h2>
-      <div
-        class="md:w-[100px] w-[60px] md:h-[25px] h-[18px] bg-[#7FD7FE] rounded-[15px] flex justify-center items-center"
-      >
-        <p class="md:text-[12px] text-[7px] font-[400] text-[#000000]">
-          JavaScript
-        </p>
-      </div>
-    </div>
-    <div>
-      <p class="md:text-[14px] text-[6px] font-[300] text-[#000000]">
-        Here is some brief description about this Project. To view the project
-        brief and your interactions click on view. Here is some brief
-        description about this Project. To view the project brief and your
-        interactions click on view. Here is some brief description about this
-        Project. To view the project brief and ...
-      </p>
-    </div>
-    <div
-      (click)="openModal()"
-      class="md:w-[171px] w-[120px] md:h-[45px] h-[35px] bg-[#F7FAFF] rounded-[4px] border border-[#808080] flex justify-center items-center mt-7"
-    >
-      <img
-        class="md:max-h-6 max-h-4"
-        src="../../assets/icons/add-response.svg"
-        alt=""
-      />
-      <h2 class="md:text-[13px] text-[10px] font-[600] text-[#808080] px-2">
-        Add response
-      </h2>
-    </div>
-  </div>
-  <div
-    class="md:w-[996px] w-[280px] my-10 md:h-[297px] h-[240px] bg-[#F7FAFF] rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4 relative"
-  >
-    <div class="flex items-center justify-center">
-      <div
-        class="md:w-[55px] w-[35px] md:h-[55px] h-[35px] rounded-full border-2"
-      >
-        <img
-          class="object-cover"
-          src="https://robohash.org/ainbtvgi?set=set3"
-          alt=""
-        />
-      </div>
-      <div class="px-3">
-        <h2 class="font-[400] md:text-[13px] text-[10px] text-[#191919]">
-          Mary Kimani
-        </h2>
-        <p class="md:text-[12px] text-[9px] font-[500] text-[#3F3F3F]">
-          6h ago
-        </p>
-      </div>
-    </div>
-    <div class="flex justify-center items-center">
-      <h2
-        class="md:text-[22px] text-[12px] font-[600] text-[#111111] md:pr-4 pr-2 py-5 cursor-pointer hover:text-[#0394D5]"
-      >
-        What is the use of forEach in javascript?
-      </h2>
-      <div
-        class="md:w-[100px] w-[60px] md:h-[25px] h-[18px] bg-[#7FD7FE] rounded-[15px] flex justify-center items-center"
-      >
-        <p class="md:text-[12px] text-[7px] font-[400] text-[#000000]">
-          JavaScript
-        </p>
-      </div>
-    </div>
-    <div>
-      <p class="md:text-[14px] text-[6px] font-[300] text-[#000000]">
-        Here is some brief description about this Project. To view the project
-        brief and your interactions click on view. Here is some brief
-        description about this Project. To view the project brief and your
-        interactions click on view. Here is some brief description about this
-        Project. To view the project brief and ...
-      </p>
-    </div>
-    <div
-      (click)="openModal()"
-      class="md:w-[171px] w-[120px] md:h-[45px] h-[35px] bg-[#F7FAFF] rounded-[4px] border border-[#808080] flex justify-center items-center mt-7"
-    >
-      <img
-        class="md:max-h-6 max-h-4"
-        src="../../assets/icons/add-response.svg"
-        alt=""
-      />
-      <h2 class="md:text-[13px] text-[10px] font-[600] text-[#808080] px-2">
-        Add response
-      </h2>
-    </div>
-  </div>
-  <div
-    class="md:w-[996px] w-[280px] my-10 md:h-[297px] h-[240px] bg-[#F7FAFF] rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4 relative"
-  >
-    <div class="flex items-center justify-center">
-      <div
-        class="md:w-[55px] w-[35px] md:h-[55px] h-[35px] rounded-full border-2"
-      >
-        <img
-          class="object-cover"
-          src="https://robohash.org/ainbbtegi?set=set3"
-          alt=""
-        />
-      </div>
-      <div class="px-3">
-        <h2 class="font-[400] md:text-[13px] text-[10px] text-[#191919]">
-          Mary Kimani
-        </h2>
-        <p class="md:text-[12px] text-[9px] font-[500] text-[#3F3F3F]">
-          6h ago
-        </p>
-      </div>
-    </div>
-    <div class="flex justify-center items-center">
-      <h2
-        class="md:text-[22px] text-[12px] font-[600] text-[#111111] md:pr-4 pr-2 py-5 cursor-pointer hover:text-[#0394D5]"
-      >
-        What is the use of forEach in javascript?
-      </h2>
-      <div
-        class="md:w-[100px] w-[60px] md:h-[25px] h-[18px] bg-[#7FD7FE] rounded-[15px] flex justify-center items-center"
-      >
-        <p class="md:text-[12px] text-[7px] font-[400] text-[#000000]">
-          JavaScript
-        </p>
-      </div>
-    </div>
-    <div>
-      <p class="md:text-[14px] text-[6px] font-[300] text-[#000000]">
-        Here is some brief description about this Project. To view the project
-        brief and your interactions click on view. Here is some brief
-        description about this Project. To view the project brief and your
-        interactions click on view. Here is some brief description about this
-        Project. To view the project brief and ...
-      </p>
-    </div>
-    <div
-      (click)="openModal()"
-      class="md:w-[171px] w-[120px] md:h-[45px] h-[35px] bg-[#F7FAFF] rounded-[4px] border border-[#808080] flex justify-center items-center mt-7"
-    >
-      <img
-        class="md:max-h-6 max-h-4"
-        src="../../assets/icons/add-response.svg"
-        alt=""
-      />
-      <h2 class="md:text-[13px] text-[10px] font-[600] text-[#808080] px-2">
-        Add response
-      </h2>
-    </div>
+    <img
+      *ngIf="isAdmin()"
+      class="py-9"
+      src="../../assets/icons/admin-delete.svg"
+      alt=""
+    />
   </div>
 
   <div
     *ngIf="isModalOpen"
     class="w-full h-screen bg-[#00000080] z-10 absolute top-0 right-0 flex items-center justify-center"
-    (click)="closeModal()"
   >
     <div
       class="md:w-[710px] w-[360px] md:h-[400px] h-[250px] bg-[#ffffff] rounded-[10px]"
@@ -315,12 +85,30 @@
         />
       </div>
       <div class="flex items-center justify-center md:mt-14">
-        <form class="flex flex-col">
+        <form
+          class="flex flex-col"
+          [formGroup]="myForm"
+          (ngSubmit)="SubmitForm()"
+        >
           <textarea
             class="md:w-[575px] w-[300px] md:h-[130px] h-[100px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[5px] mt-5 bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
             type="text"
             placeholder="Enter a comment for the question....."
+            formControlName="body"
           ></textarea>
+          <div
+            *ngIf="
+              myForm.get('body')?.invalid &&
+              (myForm.get('body')?.dirty || myForm.get('body')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('body')?.errors?.['required']"
+              class="text-red-500 md:text-[13px] text-[10px]"
+            >
+              Comment is required.
+            </div>
+          </div>
           <button
             class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] md:py-5 pl-[10px] text-white md:text-[18px] text-[14px] font-[600] sm:mt-[25px] md:mt-[30px] mt-[20px] bg-[#002d8b] rounded-[10px]"
           >

@@ -25,9 +25,10 @@
     >
       <img
         class="object-cover"
-        src="https://robohash.org/alfgrgi?set=set3"
+        src="https://robohash.org/{{ username }}?set=set3"
         alt=""
       />
+      <p>{{ username }}</p>
     </div>
     <div *ngIf="isDashboard()" class="px-2">
       <img
@@ -62,10 +63,9 @@
 <div
   *ngIf="isModalOpen"
   class="w-full h-screen bg-[#00000080] absolute top-0 flex items-center justify-center z-10"
-  (click)="closeModal()"
 >
   <div
-    class="md:w-[710px] w-[360px] md:h-[746px] h-[470px] bg-[#ffffff] rounded-[10px]"
+    class="md:w-[710px] w-[360px] md:h-[846px] h-[570px] bg-[#ffffff] rounded-[10px]"
   >
     <div
       class="flex justify-between items-center p-5 border-b md:h-[50px] h-[40px]"
@@ -82,6 +82,28 @@
       <form class="flex flex-col">
         <label
           class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
+          >User-name</label
+        >
+        <input
+          [(ngModel)]="inputValue"
+          (input)="checkInput()"
+          class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
+          type="text"
+          placeholder="Enter your username...."
+        />
+        <label
+          class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
+          >Email</label
+        >
+        <input
+          [(ngModel)]="inputValue"
+          (input)="checkInput()"
+          class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
+          type="text"
+          placeholder="Enter your email....."
+        />
+        <label
+          class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
           >Title</label
         >
         <input
@@ -89,30 +111,20 @@
           (input)="checkInput()"
           class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
           type="text"
-          placeholder="Enter your question title...."
+          placeholder="Enter your title....."
         />
+
         <label
           class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
-          >Brief description</label
+          >About</label
         >
         <textarea
           [(ngModel)]="inputValue"
           (input)="checkInput()"
           class="md:w-[575px] w-[300px] md:h-[130px] h-[100px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
           type="text"
-          placeholder="Enter a brief description of the question....."
+          placeholder="Enter your about....."
         ></textarea>
-        <label
-          class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
-          >Tag</label
-        >
-        <input
-          [(ngModel)]="inputValue"
-          (input)="checkInput()"
-          class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
-          type="text"
-          placeholder="Enter a tag....."
-        />
 
         <button
           [disabled]="isDisabled"

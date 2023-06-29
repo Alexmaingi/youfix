@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -9,4 +9,12 @@ import { RouterModule } from '@angular/router';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
 })
-export class UsersComponent {}
+export class UsersComponent {
+  constructor(private router: Router) {}
+
+  isAdmin() {
+    const admin = this.router.url === '/admin/adminusers';
+    console.log(admin);
+    return admin;
+  }
+}

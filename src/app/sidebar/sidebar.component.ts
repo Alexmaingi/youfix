@@ -18,4 +18,6 @@ export class SidebarComponent {
   isadminDashboard() {
     return this.router.url === '/admin';
   }
+
+  username = localStorage.getItem('payload');
 }

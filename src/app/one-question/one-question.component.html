@@ -1,0 +1,161 @@
+<div
+  *ngIf="question$ | async as q"
+  class="md:pr-[20rem] pr-9 md:h-[775px] h-[600px] overflow-y-scroll overscroll-contain"
+>
+  <div
+    class="md:w-[996px] w-[260px] md:my-14 my-5 md:h-[233px] h-[200px] bg-[#F7FAFF] rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4"
+  >
+    <div class="flex items-start justify-between w-full">
+      <div *ngIf="!inDashboard()" class="flex items-center justify-center">
+        <div
+          class="md:w-[51px] md:h-[51px] w-[30px] h-[30px] rounded-full border-2"
+        >
+          <img
+            class="object-cover"
+            src="https://robohash.org/{{ q.username }}?set=set3"
+            alt=""
+          />
+        </div>
+        <div class="px-3">
+          <h2 class="font-[400] md:text-[13px] text-[9px] text-[#191919]">
+            {{ q.username }}
+          </h2>
+          <p class="md:text-[12px] text-[7px] font-[500] text-[#3F3F3F]">
+            {{ q.date | date : "dd-MM-YYY" }}
+          </p>
+        </div>
+      </div>
+      <div
+        *ngIf="inDashboard()"
+        (click)="showToolkit = !showToolkit"
+        class="md:pl-[75rem] pl-[13rem] cursor-pointer"
+      >
+        <img src="../../assets/icons/edit-dots.svg" alt="" />
+      </div>
+    </div>
+    <div
+      class="absolute md:left-[69.5rem] left-[10.4rem] md:mt-0 mt-[-3.1rem]"
+      [hidden]="!showToolkit"
+    >
+      <img
+        class="relative md:max-h-96 max-h-28"
+        src="../assets/icons/delete-editholder.svg"
+        alt=""
+      />
+      <div class="absolute md:top-16 top-7 md:mt-10 md:mx-8 mx-3">
+        <img
+          (click)="openModal()"
+          class="py-3 cursor-pointer md:max-h-20 max-h-12"
+          src="../assets/icons/edit.svg"
+          alt=""
+        />
+        <img
+          class="cursor-pointer md:max-h-20 max-h-6"
+          src="../assets/icons/delete.svg"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <div class="flex justify-center items-center">
+      <h2
+        (click)="showAnswers = !showAnswers"
+        class="md:text-[22px] text-[12px] font-[600] text-[#111111] md:pr-4 pr-2 py-5 cursor-pointer hover:text-[#0394D5]"
+      >
+        {{ q.title }}
+      </h2>
+      <div
+        class="md:w-[100px] w-[60px] md:h-[25px] h-[18px] bg-[#7FD7FE] rounded-[15px] flex justify-center items-center"
+      >
+        <p class="md:text-[12px] text-[7px] font-[400] text-[#000000]">
+          {{ q.tag_names }}
+        </p>
+      </div>
+    </div>
+    <div>
+      <p class="md:text-[14px] text-[6px] font-[300] text-[#000000]">
+        {{ q.body }}
+      </p>
+    </div>
+  </div>
+  <div
+    (click)="openModal()"
+    class="md:w-[171px] w-[120px] md:h-[45px] h-[35px] bg-[#F7FAFF] rounded-[4px] border border-[#808080] flex justify-center items-center mt-7 cursor-pointer"
+    *ngIf="!isAdmin()"
+  >
+    <img
+      class="md:max-h-6 max-h-4"
+      src="../../assets/icons/add-response.svg"
+      alt=""
+    />
+    <h2 class="md:text-[13px] text-[10px] font-[600] text-[#808080] px-2">
+      Add response
+    </h2>
+  </div>
+  <img
+    *ngIf="isAdmin()"
+    class="py-9"
+    src="../../assets/icons/admin-delete.svg"
+    alt=""
+  />
+</div>
+
+<div
+  *ngIf="isModalOpen"
+  class="w-full h-screen bg-[#00000080] z-10 absolute top-0 right-0 flex items-center justify-center"
+>
+  <div
+    class="md:w-[710px] w-[360px] md:h-[400px] h-[250px] bg-[#ffffff] rounded-[10px]"
+  >
+    <div
+      class="flex justify-between items-center p-5 border-b md:h-[50px] h-[40px]"
+    >
+      <h2 class="md:text-[25px] text-[15px] font-[600]">Add a response</h2>
+      <img
+        class="md:max-h-6 max-h-3 cursor-pointer"
+        (click)="closeModal()"
+        src="../../assets/icons/exit.svg"
+        alt=""
+      />
+    </div>
+    <div class="flex items-center justify-center md:mt-14">
+      <form
+        class="flex flex-col"
+        [formGroup]="myForm"
+        (ngSubmit)="SubmitForm()"
+      >
+        <textarea
+          class="md:w-[575px] w-[300px] md:h-[130px] h-[100px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[5px] mt-5 bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
+          type="text"
+          placeholder="Enter a comment for the question....."
+        ></textarea>
+        <div
+          *ngIf="
+            myForm.get('body')?.invalid &&
+            (myForm.get('body')?.dirty || myForm.get('body')?.touched)
+          "
+        >
+          <div
+            *ngIf="myForm.get('body')?.errors?.['required']"
+            class="text-red-500 md:text-[13px] text-[10px]"
+          >
+            Comment is required.
+          </div>
+        </div>
+        <button
+          class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] md:py-5 pl-[10px] text-white md:text-[18px] text-[14px] font-[600] sm:mt-[25px] md:mt-[30px] mt-[20px] bg-[#002d8b] rounded-[10px]"
+        >
+          Share
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div
+  [hidden]="!showAnswers"
+  class="md:ml-11 ml-4 md:pl-[6rem] pl-[1.5rem] border-l-2"
+>
+  <div class="my-10"><app-answers-card></app-answers-card></div>
+</div>
+<!-- </div> -->

@@ -7,10 +7,16 @@ import { TagsComponent } from './tags/tags.component';
 import { UsersComponent } from './users/users.component';
 import { UserDasboardComponent } from './user-dasboard/user-dasboard.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { OneQuestionComponent } from './one-question/one-question.component';
 
 const routes: Routes = [
-  // { path: 'signup', component: SignupComponent },
-  // { path: 'signin', component: SigninComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'signin', component: SigninComponent },
+  { path: 'landing', component: LandingPageComponent },
 
   {
     path: '',
@@ -26,6 +32,7 @@ const routes: Routes = [
         path: 'dashboard',
         component: UserDasboardComponent,
       },
+      { path: 'question/:id', component: OneQuestionComponent },
     ],
   },
   {
@@ -38,11 +45,7 @@ const routes: Routes = [
     ],
   },
 
-  // {
-  //   path: 'dashboard',
-  //   component: UserDasboardComponent,
-  //   children: [{ path: 'home', component: HomeCardComponent }],
-  // },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

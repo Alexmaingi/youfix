@@ -5,8 +5,17 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HomeCardComponent } from '../home-card/home-card.component';
 import { TagsComponent } from '../tags/tags.component';
 import { UsersComponent } from '../users/users.component';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Addquestion } from '../State/Actions/questionAction';
+import { Store } from '@ngrx/store';
+import { AppState } from '../State/appState';
 
 @Component({
   selector: 'app-hero',
@@ -19,14 +28,14 @@ import { FormsModule } from '@angular/forms';
     TagsComponent,
     UsersComponent,
     RouterModule,
-
+    ReactiveFormsModule,
     FormsModule,
   ],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.css'],
 })
 export class HeroComponent {
-  inputValue: any;
+  inputValue!: string;
   isDisabled: boolean = true;
 
   checkInput() {
@@ -42,9 +51,62 @@ export class HeroComponent {
     this.isModalOpen = false;
   }
 
-  // inputValue = '';
-  // isDisabled = true;
+  myForm!: FormGroup;
+  errorMessage!: null;
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private store: Store<AppState>
+  ) {}
 
-  // checkInput() {
-  //   this.isDisabled = this.inputValue.trim().length === 0;
+  ngOnInit(): void {
+    this.myForm = this.fb.group({
+      title: ['', [Validators.required]],
+      body: ['', [Validators.required]],
+      tags: ['', [Validators.required]],
+    });
+  }
+
+  SubmitForm() {
+    // console.log(typeof this.id, this.id);
+
+    // if(this.id==='1'){
+    // this.propertyService.addProperty(this.form.value).subscribe(
+    //   res=>{
+    //     console.log(res);
+
+    //   }
+    // )
+
+    // console.log(this.myForm.value);
+    // this.store.dispatch(
+    //   Addquestion({
+    //     newQuestion: this.myForm.value,
+    //     userId: localStorage.getItem('id') as string,
+    //   })
+    // );
+
+    let tagsValue: string[] = [''];
+    if (this.myForm.get('tags')) {
+      tagsValue = this.myForm.get('tags')!.value.split(',');
+    }
+    this.store.dispatch(
+      Addquestion({
+        newQuestion: { ...this.myForm.value, tags: tagsValue },
+        userId: localStorage.getItem('id') as string,
+      })
+    );
+
+    this.myForm.reset();
+    this.router.navigate(['/home']);
+  }
+
+  // }else{
+  // this.propertyService.updateProperty(this.id ,this.form.value).subscribe(
+  //   res=>{
+  //     console.log(res);
+
+  //   }
+  // )
+  // this.store.dispatch(UpdateProperty({id:this.id,updatedProperty:this.form.value}))
 }

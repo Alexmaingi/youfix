@@ -24,6 +24,7 @@
           Have an account?
         </p>
         <button
+          routerLink="/signin"
           class="text-[10px] md:text-[14px] font-Inter text-[#002D8B] font-[700] rounded-[10px] border-2 border-[#002D8B] ml-11 px-10 py-3"
         >
           Sign in
@@ -34,7 +35,7 @@
       >
         You<span class="text-[#0394D5]">Fix</span>
       </h2>
-      <div class="sm:mt-[130px] md:mt-[230px] md:ml-0 ml-[30px] mt-[18px]">
+      <div class="sm:mt-[130px] md:mt-[130px] md:ml-0 ml-[30px] mt-[18px]">
         <h2
           class="sm:text-[20px] md:text-[18px] text-[16px] font-[600] text-[#828282]"
         >
@@ -47,26 +48,26 @@
         </h2>
       </div>
       <div class="md:mt-[40px] mt-[20px] md:ml-0 ml-[30px]">
-        <form class="flex flex-col" (ngSubmit)="signUp()" [formGroup]="myForm">
+        <form class="flex flex-col" [formGroup]="myForm">
           <label class="text-[#828282] text-[14px] font-[700] mb-[8px]"
             >USER-NAME</label
           >
           <input
             class="md:w-[60%] w-[22rem] py-5 pl-[10px] md:text-[13px] text-[10px] outline-none font-[500] mb-[25px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) rounded-[8px]"
             type="text"
-            formControlName="name"
+            formControlName="username"
             required
             placeholder="Enter your user-name"
           />
           <div
             *ngIf="
-              myForm.get('name')?.invalid &&
-              (myForm.get('name')?.dirty || myForm.get('name')?.touched)
+              myForm.get('username')?.invalid &&
+              (myForm.get('username')?.dirty || myForm.get('username')?.touched)
             "
           >
             <div
-              *ngIf="myForm.get('name')?.errors?.['required']"
-              class="text-red-500 py-3 text-sm mb-3"
+              *ngIf="myForm.get('username')?.errors?.['required']"
+              class="text-red-500 md:text-[13px] text-[10px] mb-3"
             >
               User-ame is required.
             </div>
@@ -90,13 +91,13 @@
           >
             <div
               *ngIf="myForm.get('email')?.errors?.['required']"
-              class="text-red-500 py-3 text-sm mb-3"
+              class="text-red-500 md:text-[13px] text-[10px] mb-3"
             >
               Email is required.
             </div>
             <div
               *ngIf="myForm.get('email')?.errors?.['email']"
-              class="text-red-500 py-3 text-sm mb-3"
+              class="text-red-500 md:text-[13px] text-[10px] mb-3"
             >
               Invalid email format.
             </div>
@@ -120,7 +121,7 @@
           >
             <div
               *ngIf="myForm.get('password')?.errors?.['required']"
-              class="text-red-500 py-3 text-sm mb-3"
+              class="text-red-500 md:text-[13px] text-[10px] mb-3"
             >
               Password is required.
             </div>
@@ -145,7 +146,7 @@
           >
             <div
               *ngIf="myForm.get('confirmPassword')?.errors?.['required']"
-              class="text-red-500 py-3 text-sm mb-3"
+              class="text-red-500 md:text-[13px] text-[10px] mb-3"
             >
               Confirm password is required.
             </div>
@@ -154,14 +155,14 @@
                 myForm.get('confirmPassword')?.value !==
                 myForm.get('password')?.value
               "
-              class="text-red-500 py-3 text-sm mb-3"
+              class="text-red-500 md:text-[13px] text-[10px] mb-3"
             >
               Passwords do not match.
             </div>
           </div>
 
           <button
-            type="submit"
+            (click)="signUp()"
             class="md:w-[60%] w-[22rem] md:text-[13px] py-5 pl-[10px] text-white text-[15px] font-[600] sm:mt-[25px] mt-[30px] bg-[#002d8b] border border-rgba(0, 0, 0, 0.1) rounded-[10px]"
           >
             Sign Up

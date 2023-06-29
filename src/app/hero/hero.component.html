@@ -27,10 +27,9 @@
   <div
     *ngIf="isModalOpen"
     class="w-full h-screen bg-[#00000080] absolute top-0 flex items-center justify-center"
-    (click)="closeModal()"
   >
     <div
-      class="md:w-[710px] w-[360px] md:h-[746px] h-[470px] bg-[#ffffff] rounded-[10px]"
+      class="md:w-[800px] w-[390px] md:h-[746px] h-[470px] bg-[#ffffff] rounded-[10px]"
     >
       <div
         class="flex justify-between items-center p-5 border-b md:h-[50px] h-[40px]"
@@ -46,43 +45,85 @@
         />
       </div>
       <div class="flex items-center justify-center md:mt-14">
-        <form class="flex flex-col">
+        <form
+          class="flex flex-col"
+          [formGroup]="myForm"
+          (ngSubmit)="SubmitForm()"
+        >
           <label
             class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
             >Title</label
           >
           <input
-            [(ngModel)]="inputValue"
-            (input)="checkInput()"
             class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
             type="text"
             placeholder="Enter your question title...."
+            formControlName="title"
           />
+          <div
+            *ngIf="
+              myForm.get('title')?.invalid &&
+              (myForm.get('title')?.dirty || myForm.get('title')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('title')?.errors?.['required']"
+              class="text-red-500 md:text-[13px] text-[10px]"
+            >
+              Title is required.
+            </div>
+          </div>
+
           <label
             class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
             >Brief description</label
           >
           <textarea
-            [(ngModel)]="inputValue"
-            (input)="checkInput()"
             class="md:w-[575px] w-[300px] md:h-[130px] h-[100px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
             type="text"
             placeholder="Enter a brief description of the question....."
+            formControlName="body"
           ></textarea>
+          <div
+            *ngIf="
+              myForm.get('body')?.invalid &&
+              (myForm.get('body')?.dirty || myForm.get('body')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('body')?.errors?.['required']"
+              class="text-red-500 md:text-[13px] text-[10px]"
+            >
+              Description is required.
+            </div>
+          </div>
+
           <label
             class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
             >Tag</label
           >
           <input
-            [(ngModel)]="inputValue"
-            (input)="checkInput()"
             class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
             type="text"
             placeholder="Enter a tag....."
+            formControlName="tags"
           />
+          <div
+            *ngIf="
+              myForm.get('tags')?.invalid &&
+              (myForm.get('tags')?.dirty || myForm.get('tags')?.touched)
+            "
+          >
+            <div
+              *ngIf="myForm.get('tags')?.errors?.['required']"
+              class="text-red-500 md:text-[13px] text-[10px]"
+            >
+              Tag is required.
+            </div>
+          </div>
 
           <button
-            [disabled]="isDisabled"
+            type="submit"
             class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] md:py-5 pl-[10px] text-white md:text-[18px] text-[14px] font-[600] sm:mt-[25px] md:mt-[30px] mt-[20px] bg-[#002d8b] rounded-[10px]"
           >
             Share

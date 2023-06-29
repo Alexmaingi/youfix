@@ -1,7 +1,9 @@
 <div
-  class="md:pr-[20rem] pr-9 md:h-[775px] h-[600px] overflow-y-scroll overscroll-contain relative"
+  *ngIf="questions$ | async as questions"
+  class="md:pr-[20rem] pr-9 md:h-[775px] h-[600px] overflow-y-scroll overscroll-contain"
 >
   <div
+    *ngFor="let q of questions$ | async"
     class="md:w-[996px] w-[260px] md:my-14 my-5 md:h-[233px] h-[200px] bg-[#F7FAFF] rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4"
   >
     <div class="flex items-start justify-between w-full">
@@ -11,16 +13,16 @@
         >
           <img
             class="object-cover"
-            src="https://robohash.org/alejgfdxaingi?set=set3"
+            src="https://robohash.org/{{ q.username }}?set=set3"
             alt=""
           />
         </div>
         <div class="px-3">
           <h2 class="font-[400] md:text-[13px] text-[9px] text-[#191919]">
-            Mary Kimani
+            {{ q.username }}
           </h2>
           <p class="md:text-[12px] text-[7px] font-[500] text-[#3F3F3F]">
-            5/9/2022
+            {{ q.date | date : "dd-MM-YYY" }}
           </p>
         </div>
       </div>
@@ -58,95 +60,46 @@
 
     <div class="flex justify-center items-center">
       <h2
-        (click)="showAnswers = !showAnswers"
+        (click)="oneAnswer(q.id)"
         class="md:text-[22px] text-[12px] font-[600] text-[#111111] md:pr-4 pr-2 py-5 cursor-pointer hover:text-[#0394D5]"
       >
-        What is the use of forEach in javascript?
+        {{ q.title }}
       </h2>
       <div
         class="md:w-[100px] w-[60px] md:h-[25px] h-[18px] bg-[#7FD7FE] rounded-[15px] flex justify-center items-center"
       >
         <p class="md:text-[12px] text-[7px] font-[400] text-[#000000]">
-          JavaScript
+          {{ q.tag_names }}
         </p>
       </div>
     </div>
     <div>
       <p class="md:text-[14px] text-[6px] font-[300] text-[#000000]">
-        Here is some brief description about this Project. To view the project
-        brief and your interactions click on view. Here is some brief
-        description about this Project. To view the project brief and your
-        interactions click on view. Here is some brief description about this
-        Project. To view the project brief and ...
+        {{ q.body }}
       </p>
     </div>
   </div>
 
-  <div
-    [hidden]="!showAnswers"
+  <!-- <div
+    [hidden]="showAnswers"
     class="md:ml-11 ml-4 md:pl-[6rem] pl-[1.5rem] border-l-2"
   >
     <div class="my-10"><app-answers-card></app-answers-card></div>
-    <!-- <div class="my-10"><app-answers-card></app-answers-card></div>
-    <div class="my-10"><app-answers-card></app-answers-card></div>
-    <div class="my-10"><app-answers-card></app-answers-card></div> -->
-  </div>
+  </div> -->
 </div>
-<div
-  *ngIf="isModalOpen"
-  class="w-full h-screen bg-[#00000080] absolute left-0 top-0 flex items-center justify-center"
-  (click)="closeModal()"
->
-  <div
-    class="md:w-[710px] w-[360px] md:h-[746px] h-[470px] bg-[#ffffff] rounded-[10px]"
+<div>
+  <button
+    class="px-5 border"
+    (click)="previousPage()"
+    [disabled]="pageNumber === 1"
   >
-    <div
-      class="flex justify-between items-center p-5 border-b md:h-[50px] h-[40px]"
-    >
-      <h2 class="md:text-[25px] text-[15px] font-[600]">Create new Question</h2>
-      <img
-        class="md:max-h-6 max-h-3 cursor-pointer"
-        (click)="closeModal()"
-        src="../../assets/icons/exit.svg"
-        alt=""
-      />
-    </div>
-    <div class="flex items-center justify-center md:mt-14">
-      <form class="flex flex-col">
-        <label
-          class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
-          >Title</label
-        >
-        <input
-          class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
-          type="text"
-          placeholder="Enter your question title...."
-        />
-        <label
-          class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
-          >Brief description</label
-        >
-        <textarea
-          class="md:w-[575px] w-[300px] md:h-[130px] h-[100px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
-          type="text"
-          placeholder="Enter a brief description of the question....."
-        ></textarea>
-        <label
-          class="text-[#000000] md:text-[25px] text-[18px] font-[600] md:mb-[8px]"
-          >Tag</label
-        >
-        <input
-          class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] py-5 pl-[10px] md:text-[13px] text-[9px] outline-none font-[500] md:mb-[25px] mb-[18px] bg-[#FBFBFB] border-2 border-rgba(0, 0, 0, 0.1) md:rounded-[10px] rounded-[8px]"
-          type="text"
-          placeholder="Enter a tag....."
-        />
-
-        <button
-          class="md:w-[575px] w-[300px] md:h-[70px] h-[50px] md:py-5 pl-[10px] text-white md:text-[18px] text-[14px] font-[600] sm:mt-[25px] md:mt-[30px] mt-[20px] bg-[#002d8b] rounded-[10px]"
-        >
-          Share
-        </button>
-      </form>
-    </div>
-  </div>
+    Previous
+  </button>
+  <button
+    class="mx-5 px-5 border"
+    (click)="nextPage()"
+    [disabled]="pageNumber === totalPages"
+  >
+    Next
+  </button>
 </div>

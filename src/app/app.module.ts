@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { AuthEffects } from './State/Effects/authEffect';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +17,18 @@ import { HeroComponent } from './hero/hero.component';
 import { TagsComponent } from './tags/tags.component';
 import { UsersComponent } from './users/users.component';
 import { UserDasboardComponent } from './user-dasboard/user-dasboard.component';
+import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+// import { UserEffects } from './State/Effects/userEffect';
+// import { userReducers } from './State/Reducers/userReducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { questionReducer } from './State/Reducers/questionReducer';
+import { QuestionEffects } from './State/Effects/questionEffect';
+import { authReducer } from './State/Reducers/authReducer';
+import { AuthService } from './Services/auth.service';
+import { answerReducer } from './State/Reducers/answerReducer';
+import { AnswerEffects } from './State/Effects/answerEffect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,8 +49,15 @@ import { UserDasboardComponent } from './user-dasboard/user-dasboard.component';
     UserDasboardComponent,
     UsersComponent,
     NavbarComponent,
+    HttpClientModule,
+    StoreModule.forRoot(
+      { auth: authReducer, question: questionReducer, answers: answerReducer },
+      {}
+    ),
+    EffectsModule.forRoot([AuthEffects, QuestionEffects, AnswerEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
