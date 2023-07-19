@@ -37,6 +37,7 @@ import { AppState } from '../State/appState';
 export class HeroComponent {
   inputValue!: string;
   isDisabled: boolean = true;
+  searchTerm!: string;
 
   checkInput() {
     this.isDisabled = !this.inputValue;

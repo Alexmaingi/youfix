@@ -29,6 +29,8 @@ import { authReducer } from './State/Reducers/authReducer';
 import { AuthService } from './Services/auth.service';
 import { answerReducer } from './State/Reducers/answerReducer';
 import { AnswerEffects } from './State/Effects/answerEffect';
+import { userReducer } from './State/Reducers/userReducer';
+import { UsersEffects } from './State/Effects/userEffect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -51,10 +53,20 @@ import { AnswerEffects } from './State/Effects/answerEffect';
     NavbarComponent,
     HttpClientModule,
     StoreModule.forRoot(
-      { auth: authReducer, question: questionReducer, answers: answerReducer },
+      {
+        auth: authReducer,
+        question: questionReducer,
+        answers: answerReducer,
+        user: userReducer,
+      },
       {}
     ),
-    EffectsModule.forRoot([AuthEffects, QuestionEffects, AnswerEffects]),
+    EffectsModule.forRoot([
+      AuthEffects,
+      QuestionEffects,
+      AnswerEffects,
+      UsersEffects,
+    ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [AuthService],

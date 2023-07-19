@@ -3,7 +3,7 @@
   class="md:pr-[20rem] pr-9 md:h-[775px] h-[600px] overflow-y-scroll overscroll-contain"
 >
   <div
-    class="md:w-[996px] w-[260px] md:my-14 my-5 md:h-[233px] h-[200px] bg-[#F7FAFF] rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4"
+    class="md:w-[996px] w-[260px] md:my-14 my-5 md:h-[300px] h-[250px] bg-[#F7FAFF] rounded-[10px] drop-shadow-lg flex flex-col justify-center items-start md:p-12 p-4"
   >
     <div class="flex items-start justify-between w-full">
       <div *ngIf="!inDashboard()" class="flex items-center justify-center">
@@ -77,29 +77,35 @@
         {{ q.body }}
       </p>
     </div>
-  </div>
-  <div
-    (click)="openModal()"
-    class="md:w-[171px] w-[120px] md:h-[45px] h-[35px] bg-[#F7FAFF] rounded-[4px] border border-[#808080] flex justify-center items-center mt-7 cursor-pointer"
-    *ngIf="!isAdmin()"
-  >
+    <div
+      (click)="openModal()"
+      class="md:w-[171px] w-[120px] md:h-[45px] h-[35px] bg-[#F7FAFF] rounded-[4px] border border-[#808080] flex justify-center items-center mt-7 cursor-pointer"
+      *ngIf="!isAdmin()"
+    >
+      <img
+        class="md:max-h-6 max-h-4"
+        src="../../assets/icons/add-response.svg"
+        alt=""
+      />
+      <h2 class="md:text-[13px] text-[10px] font-[600] text-[#808080] px-2">
+        Add response
+      </h2>
+    </div>
     <img
-      class="md:max-h-6 max-h-4"
-      src="../../assets/icons/add-response.svg"
+      *ngIf="isAdmin()"
+      class="py-9"
+      src="../../assets/icons/admin-delete.svg"
       alt=""
     />
-    <h2 class="md:text-[13px] text-[10px] font-[600] text-[#808080] px-2">
-      Add response
-    </h2>
   </div>
-  <img
-    *ngIf="isAdmin()"
-    class="py-9"
-    src="../../assets/icons/admin-delete.svg"
-    alt=""
-  />
+  <!-- </div> -->
+  <div
+    [hidden]="!showAnswers"
+    class="md:ml-11 ml-4 md:pl-[6rem] pl-[1.5rem] border-l-2"
+  >
+    <div class="my-10"><app-answers-card></app-answers-card></div>
+  </div>
 </div>
-
 <div
   *ngIf="isModalOpen"
   class="w-full h-screen bg-[#00000080] z-10 absolute top-0 right-0 flex items-center justify-center"
@@ -151,11 +157,3 @@
     </div>
   </div>
 </div>
-
-<div
-  [hidden]="!showAnswers"
-  class="md:ml-11 ml-4 md:pl-[6rem] pl-[1.5rem] border-l-2"
->
-  <div class="my-10"><app-answers-card></app-answers-card></div>
-</div>
-<!-- </div> -->

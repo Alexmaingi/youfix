@@ -1,158 +1,22 @@
 <div
   class="grid md:grid-cols-3 gap-10 md:pr-[20rem] pr-9 md:h-[775px] h-[600px] overflow-y-scroll overscroll-contain"
 >
-  <div class="flex items-center justify-start">
+  <div class="flex items-center justify-start" *ngFor="let user of users">
     <div
       class="md:w-[120px] w-[80px] md:h-[120px] h-[80px] rounded-full border-2"
     >
-      <img src="https://robohash.org/arfgrgi?set=set3" alt="" />
+      <img src="https://robohash.org/{{ user.username }}?set=set3" alt="" />
     </div>
     <div class="md:px-4 px-2">
       <h2 class="md:text-[20px] text-[17px] font-[600] text-[#000000]">
-        Peter Gregory
+        {{ user.username }}
       </h2>
       <p
         class="md:text-[12px] text-[8px] font-[300] text-[#000000] md:w-[175px] w-[130px] md:h-[54px] h-[30px]"
       >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-      </p>
-      <img
-        *ngIf="isAdmin()"
-        class=""
-        src="../../assets/icons/admin-delete.svg"
-        alt=""
-      />
-    </div>
-  </div>
-  <div class="flex items-center justify-start">
-    <div
-      class="md:w-[120px] w-[80px] md:h-[120px] h-[80px] rounded-full border-2"
-    >
-      <img src="https://robohash.org/arrgi?set=set3" alt="" />
-    </div>
-    <div class="md:px-4 px-2">
-      <h2 class="md:text-[20px] text-[17px] font-[600] text-[#000000]">
-        Peter Gregory
-      </h2>
-      <p
-        class="md:text-[12px] text-[8px] font-[300] text-[#000000] md:w-[175px] w-[130px] md:h-[54px] h-[30px]"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-      </p>
-      <img
-        *ngIf="isAdmin()"
-        class=""
-        src="../../assets/icons/admin-delete.svg"
-        alt=""
-      />
-    </div>
-  </div>
-  <div class="flex items-center justify-start">
-    <div
-      class="md:w-[120px] w-[80px] md:h-[120px] h-[80px] rounded-full border-2"
-    >
-      <img src="https://robohash.org/aytgrgi?set=set3" alt="" />
-    </div>
-    <div class="md:px-4 px-2">
-      <h2 class="md:text-[20px] text-[17px] font-[600] text-[#000000]">
-        Peter Gregory
-      </h2>
-      <p
-        class="md:text-[12px] text-[8px] font-[300] text-[#000000] md:w-[175px] w-[130px] md:h-[54px] h-[30px]"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-      </p>
-      <img
-        *ngIf="isAdmin()"
-        class=""
-        src="../../assets/icons/admin-delete.svg"
-        alt=""
-      />
-    </div>
-  </div>
-  <div class="flex items-center justify-start">
-    <div
-      class="md:w-[120px] w-[80px] md:h-[120px] h-[80px] rounded-full border-2"
-    >
-      <img src="https://robohash.org/arfguyrgi?set=set3" alt="" />
-    </div>
-    <div class="md:px-4 px-2">
-      <h2 class="md:text-[20px] text-[17px] font-[600] text-[#000000]">
-        Peter Gregory
-      </h2>
-      <p
-        class="md:text-[12px] text-[8px] font-[300] text-[#000000] md:w-[175px] w-[130px] md:h-[54px] h-[30px]"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-      </p>
-      <img
-        *ngIf="isAdmin()"
-        class=""
-        src="../../assets/icons/admin-delete.svg"
-        alt=""
-      />
-    </div>
-  </div>
-  <div class="flex items-center justify-start">
-    <div
-      class="md:w-[120px] w-[80px] md:h-[120px] h-[80px] rounded-full border-2"
-    >
-      <img src="https://robohash.org/arfgrghi?set=set3" alt="" />
-    </div>
-    <div class="md:px-4 px-2">
-      <h2 class="md:text-[20px] text-[17px] font-[600] text-[#000000]">
-        Peter Gregory
-      </h2>
-      <p
-        class="md:text-[12px] text-[8px] font-[300] text-[#000000] md:w-[175px] w-[130px] md:h-[54px] h-[30px]"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-      </p>
-      <img
-        *ngIf="isAdmin()"
-        class=""
-        src="../../assets/icons/admin-delete.svg"
-        alt=""
-      />
-    </div>
-  </div>
-  <div class="flex items-center justify-start">
-    <div
-      class="md:w-[120px] w-[80px] md:h-[120px] h-[80px] rounded-full border-2"
-    >
-      <img src="https://robohash.org/arfjhggrgi?set=set3" alt="" />
-    </div>
-    <div class="md:px-4 px-2">
-      <h2 class="md:text-[20px] text-[17px] font-[600] text-[#000000]">
-        Peter Gregory
-      </h2>
-      <p
-        class="md:text-[12px] text-[8px] font-[300] text-[#000000] md:w-[175px] w-[130px] md:h-[54px] h-[30px]"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-      </p>
-      <img
-        *ngIf="isAdmin()"
-        class=""
-        src="../../assets/icons/admin-delete.svg"
-        alt=""
-      />
-    </div>
-  </div>
-  <div class="flex items-center justify-start">
-    <div
-      class="md:w-[120px] w-[80px] md:h-[120px] h-[80px] rounded-full border-2"
-    >
-      <img src="https://robohash.org/arfhggrgi?set=set3" alt="" />
-    </div>
-    <div class="md:px-4 px-2">
-      <h2 class="md:text-[20px] text-[17px] font-[600] text-[#000000]">
-        Peter Gregory
-      </h2>
-      <p
-        class="md:text-[12px] text-[8px] font-[300] text-[#000000] md:w-[175px] w-[130px] md:h-[54px] h-[30px]"
-      >
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed{{
+          user.about
+        }}
       </p>
       <img
         *ngIf="isAdmin()"

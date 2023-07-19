@@ -36,6 +36,7 @@ export interface Answer {
 export interface Comment {
   id: string;
   userId: string;
+  username: string;
   answerId: string;
   body: string;
 }
@@ -52,8 +53,8 @@ export interface AddUserSuccess {
   payload: {
     username: string;
     id: string;
-    role: string;
   };
+  role: string;
   id: string;
 }
 

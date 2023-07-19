@@ -36,4 +36,8 @@ export class NavbarComponent {
   }
 
   username = localStorage.getItem('payload');
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/landing');
+  }
 }

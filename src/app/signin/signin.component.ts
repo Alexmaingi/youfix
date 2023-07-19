@@ -48,6 +48,7 @@ export class SigninComponent {
         return state.auth.error;
       }) as Observable<string>;
 
+      // localStorage.getItem('')
       // Submit the form
     } else {
       // Mark all fields as touched to display validation errors

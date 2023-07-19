@@ -21,7 +21,7 @@ export const getUser = createAction(
 );
 export const getUserSuccess = createAction(
   '[Users API] Users Load Success',
-  props<{ user: User | undefined }>()
+  props<{ user: User[] }>()
 );
 export const getUserFailure = createAction(
   '[Users API] Users Load Failure',
@@ -42,15 +42,15 @@ export const deleteUserFailure = createAction(
   props<{ error: string }>()
 );
 
-export function GetUserFailure(
-  GetUserFailure: any,
-  arg1: (
-    state: import('../Reducers/userReducer').QuestionInterface,
-    action: any
-  ) => UserInterface
-): import('@ngrx/store').ReducerTypes<
-  import('../Reducers/userReducer').QuestionInterface,
-  readonly import('@ngrx/store').ActionCreator[]
-> {
-  throw new Error('Function not implemented.');
-}
+// export function GetUserFailure(
+//   GetUserFailure: any,
+//   arg1: (
+//     state: import('../Reducers/userReducer').QuestionInterface,
+//     action: any
+//   ) => UserInterface
+// ): import('@ngrx/store').ReducerTypes<
+//   import('../Reducers/userReducer').QuestionInterface,
+//   readonly import('@ngrx/store').ActionCreator[]
+// > {
+//   throw new Error('Function not implemented.');
+// }

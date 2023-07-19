@@ -52,6 +52,7 @@ export class AuthEffects {
             localStorage.setItem('token', response.token);
             localStorage.setItem('payload', JSON.stringify(response.payload));
             localStorage.setItem('id', response.id);
+            localStorage.setItem('role', response.role);
             this.router.navigate(['']);
             return AuthActions.signInSuccess({ message: response.message });
           }),

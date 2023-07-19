@@ -118,10 +118,10 @@ export class OneQuestionComponent implements OnInit {
     // );
 
     // this.store.dispatch(
-    //   // AnswerActions.Addanswer({
-    //   //   questionId: this.qid,
-    //   //   uid: localStorage.getItem('id') as string,
-    //   // })
+    // AnswerActions.Addanswer({
+    //   questionId: this.qid,
+    //   uid: localStorage.getItem('id') as string,
+    // })
     // );
 
     this.myForm.reset();
